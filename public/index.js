@@ -71,3 +71,45 @@ let addFunction = (x, y) => {
 let subFunction = (x, y) => {
     return x - y;
 };
+class Person {
+    constructor(id, name, age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+    register() {
+        return `${this.name} is a registered user!`;
+    }
+}
+const John = new Person(1, "John Doe", 24);
+const Jordan = new Person(2, "Jordan Mike", 42);
+console.log(John, Jordan);
+console.log(John.register());
+class Person2 {
+    constructor(id, name, age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+    register() {
+        return `${this.name} is a registered user!`;
+    }
+}
+let Ness = new Person2(69, "Nessa", 15);
+console.log(Ness.register());
+class ChildPerson extends Person2 {
+    constructor(id, name, age, position) {
+        super(id, name, age);
+        this.position = position;
+    }
+    register() {
+        return `${this.name} is a registered user! and is a ${this.position}`;
+    }
+}
+let Frenzy = new ChildPerson(15, "Shawn", 15, "Son");
+console.log(Frenzy.register());
+let getArray = (items) => {
+    return new Array().concat(items);
+};
+let numArray = getArray([1, 2, 3, 4, 5, 6]);
+let stringArray = getArray(['Brad', 'John', 'Paul', 'Mike', 'Spencer', 'David']);

@@ -185,3 +185,96 @@ let subFunction: mathFunction = (x: number,y: number): number => {
 /*=====
 Classes
 =====*/
+class Person {
+	private id: number; //public attributes by default
+	name: string;
+	protected age: number;
+
+	constructor(id: number, name: string, age: number) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+	}
+
+	register() {
+		return `${this.name} is a registered user!`;
+	}
+}
+
+const John = new Person(1, "John Doe", 24);
+const Jordan = new Person(2, "Jordan Mike", 42);
+
+console.log(John, Jordan);
+
+// Property 'id' is private and only accessible within class 'Person'.
+// John.id = 5;
+
+// Property 'id' is private and only accessible within class 'Person'.
+// console.log(John.id) // will still work in vanilla JS
+
+console.log(John.register());
+
+/*=========================
+Using Interfaces in Classes
+=========================*/
+interface PersonInterface {
+	id: number,
+	name: string,
+	age: number,
+	register(): string
+}
+
+class Person2 implements PersonInterface {
+ 	id: number; //public attributes by default
+	name: string;
+	age: number;
+	
+	constructor(id: number, name: string, age: number) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+	}
+
+	public register() {
+		return `${this.name} is a registered user!`;
+	}
+}
+
+let Ness = new Person2(69,"Nessa",15)
+console.log(Ness.register())
+
+/*===============
+Extending Classes
+===============*/
+//AKA. subclasses / child classes
+class ChildPerson extends Person2 {
+	position: string
+
+	//constructor method should have the same parameters as the parent class
+	constructor(id: number, name: string, age: number, position: string) {
+		super(id, name, age);
+		this.position = position
+	}
+
+	register() {
+		return `${this.name} is a registered user! and is a ${this.position}`;
+	}
+}
+
+let Frenzy = new ChildPerson(15, "Shawn", 15, "Son")
+console.log(Frenzy.register())
+
+/*======
+Generics
+======*/
+// used to build reusable components
+let getArray = <T>(items: T[]): T[] => {
+	return new Array().concat(items);
+}
+// the <T> here acts as a generic type, then we define the type afterwards instead
+
+let numArray = getArray<number>([1, 2, 3, 4, 5, 6]);
+let stringArray = getArray<string>(['Brad', 'John', 'Paul', 'Mike', 'Spencer', 'David']);
+
+// Argument of type 'string' is not assignable to parameter of type 'number'.
+// numArray.push('a string');
